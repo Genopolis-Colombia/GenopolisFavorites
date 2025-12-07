@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 @SpringBootTest
-class MysqlProteinRepositoryImplTest extends MySQLTestContainer {
+class MysqlFavoriteRepositoryImplTest extends MySQLTestContainer {
     @Test
     void savePet() {
         Integer id = 1;

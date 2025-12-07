@@ -2,7 +2,7 @@ package org.gpc.template.handlers;
 
 import lombok.AllArgsConstructor;
 import org.gpc.template.adapters.in.http.dto.DTO;
-import org.gpc.template.usecase.DeleteProteinUseCaseImpl;
+import org.gpc.template.usecase.DeleteFavoriteUseCaseImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class DeleteProteinHandler implements Handler<UUID, ResponseEntity<DTO>> {
-  private final DeleteProteinUseCaseImpl deleteProteinUseCase;
+  private final DeleteFavoriteUseCaseImpl deleteProteinUseCase;
 
   @Override
   public ResponseEntity<DTO> handle(UUID petID) {

@@ -5,12 +5,10 @@ import org.gpc.template.adapters.out.mysql.ProteinRepository;
 import org.gpc.template.handlers.CreateProteinHandler;
 import org.gpc.template.handlers.DeleteProteinHandler;
 import org.gpc.template.handlers.GetProteinHandler;
-import org.gpc.template.handlers.UpdateProteinHandler;
 import org.gpc.template.port.RepositoryPort;
-import org.gpc.template.usecase.CreateProteinUseCaseImpl;
-import org.gpc.template.usecase.DeleteProteinUseCaseImpl;
-import org.gpc.template.usecase.GetProteinUseCaseImpl;
-import org.gpc.template.usecase.PutProteinUseCaseImpl;
+import org.gpc.template.usecase.CreateFavoriteUseCaseImpl;
+import org.gpc.template.usecase.DeleteFavoriteUseCaseImpl;
+import org.gpc.template.usecase.GetFavoriteUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,18 +20,18 @@ public class AppConfig {
         return new MysqlProteinRepositoryImpl(proteinRepository);
     }
     @Bean
-    CreateProteinUseCaseImpl getCreateProteinUseCaseImpl(RepositoryPort repositoryPort){
-        return new CreateProteinUseCaseImpl(repositoryPort);
+    CreateFavoriteUseCaseImpl getCreateProteinUseCaseImpl(RepositoryPort repositoryPort){
+        return new CreateFavoriteUseCaseImpl(repositoryPort);
     }
 
     @Bean
-    GetProteinUseCaseImpl getProteinUseCase(RepositoryPort repositoryPort){
-        return new GetProteinUseCaseImpl(repositoryPort);
+    GetFavoriteUseCaseImpl getProteinUseCase(RepositoryPort repositoryPort){
+        return new GetFavoriteUseCaseImpl(repositoryPort);
     }
 
     @Bean
-    DeleteProteinUseCaseImpl getDeleteProteinUseCase(RepositoryPort repositoryPort){
-        return new DeleteProteinUseCaseImpl(repositoryPort);
+    DeleteFavoriteUseCaseImpl getDeleteProteinUseCase(RepositoryPort repositoryPort){
+        return new DeleteFavoriteUseCaseImpl(repositoryPort);
     }
     @Bean
     PutProteinUseCaseImpl getPutProteinUseCase(RepositoryPort repositoryPort){
@@ -41,22 +39,22 @@ public class AppConfig {
     }
 
     @Bean
-    UpdateProteinHandler getUpdateProteinHandler(GetProteinUseCaseImpl getProteinUseCase, PutProteinUseCaseImpl putProteinUseCase){
+    UpdateProteinHandler getUpdateProteinHandler(GetFavoriteUseCaseImpl getProteinUseCase, PutProteinUseCaseImpl putProteinUseCase){
         return new UpdateProteinHandler(putProteinUseCase, getProteinUseCase);
     }
 
     @Bean
-    CreateProteinHandler getCreateProteinHandler(CreateProteinUseCaseImpl createProteinUseCase){
+    CreateProteinHandler getCreateProteinHandler(CreateFavoriteUseCaseImpl createProteinUseCase){
         return new CreateProteinHandler(createProteinUseCase);
     }
 
     @Bean
-    GetProteinHandler getGetProteinHandler(GetProteinUseCaseImpl getProteinUseCase){
+    GetProteinHandler getGetProteinHandler(GetFavoriteUseCaseImpl getProteinUseCase){
         return new GetProteinHandler(getProteinUseCase);
     }
 
     @Bean
-    DeleteProteinHandler getDeleteProteinHandler(DeleteProteinUseCaseImpl deleteProteinUseCase){
+    DeleteProteinHandler getDeleteProteinHandler(DeleteFavoriteUseCaseImpl deleteProteinUseCase){
         return new DeleteProteinHandler(deleteProteinUseCase);
     }
 

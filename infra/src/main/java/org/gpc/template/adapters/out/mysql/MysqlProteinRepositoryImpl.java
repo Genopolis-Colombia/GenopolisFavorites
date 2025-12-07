@@ -2,8 +2,7 @@ package org.gpc.template.adapters.out.mysql;
 
 import org.gpc.template.adapters.out.mysql.model.ProteinEntity;
 import org.gpc.template.adapters.out.mysql.transformers.ProteinTransformer;
-import org.gpc.template.kernel.Protein;
-import org.gpc.template.kernel.UpdateProtein;
+import org.gpc.template.kernel.Favorite;
 import org.gpc.template.port.RepositoryPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +21,13 @@ public class MysqlProteinRepositoryImpl implements RepositoryPort {
     }
 
     @Override
-    public UUID saveProtein(Protein protein) {
+    public UUID saveProtein(Favorite favorite) {
         logger.debug("Starting saving protein");
-        return proteinRepository.save(ProteinTransformer.proteinToEntity(protein)).getId();
+        return proteinRepository.save(ProteinTransformer.proteinToEntity(favorite)).getId();
     }
 
     @Override
-    public Optional<Protein> getProtein(UUID id) {
+    public Optional<Favorite> getProtein(UUID id) {
         return proteinRepository.findById(id).map(ProteinTransformer::entityToProtein);
     }
 
@@ -38,7 +37,7 @@ public class MysqlProteinRepositoryImpl implements RepositoryPort {
     }
 
     @Override
-    public Optional<Protein> putProtein(UpdateProtein updateprotein) {
+    public Optional<Favorite> putProtein(UpdateProtein updateprotein) {
 
         ProteinEntity proteinEntity = ProteinTransformer.updateProteinToEntity(updateprotein);
         proteinRepository.save(proteinEntity);

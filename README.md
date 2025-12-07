@@ -11,7 +11,7 @@ para las pruebas de integración.
 * mysql -u root -p (Ingresar a la consola de mysql)
 * create database proteins (Crear base de datos)
 * create user 'springuser'@'%' identified by "p4t1App"; (crear usuario para spring)
-* grant all on proteins_genopolis.* to 'springuser'@'%'; (Dar permisos al nuevo usuario sobre la base de datos creada)
+* grant all on favorites_genopolis.* to 'springuser'@'%'; (Dar permisos al nuevo usuario sobre la base de datos creada)
 
 ## Running the application
 ```

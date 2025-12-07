@@ -1,25 +1,24 @@
 package org.gpc.template.adapters.out.mysql.transformers;
 
 import org.gpc.template.adapters.out.mysql.model.ProteinEntity;
-import org.gpc.template.kernel.Protein;
-import org.gpc.template.kernel.UpdateProtein;
+import org.gpc.template.kernel.Favorite;
 
 public class ProteinTransformer {
 
-    public static ProteinEntity proteinToEntity(Protein protein) {
+    public static ProteinEntity proteinToEntity(Favorite favorite) {
         ProteinEntity proteinEntity = new ProteinEntity();
-        proteinEntity.setFastaNombre(protein.fastaNombre());
-        proteinEntity.setFastaSecuencia(protein.fastaSecuencia());
-        proteinEntity.setFuente(protein.fuente());
-        proteinEntity.setOrganismo(protein.organismo());
-        proteinEntity.setClasificacion(protein.clasificacion());
-        proteinEntity.setEcClasificacion(protein.ecClasificacion());
-        proteinEntity.setAutores(protein.autores());
+        proteinEntity.setFastaNombre(favorite.fastaNombre());
+        proteinEntity.setFastaSecuencia(favorite.fastaSecuencia());
+        proteinEntity.setFuente(favorite.fuente());
+        proteinEntity.setOrganismo(favorite.organismo());
+        proteinEntity.setClasificacion(favorite.clasificacion());
+        proteinEntity.setEcClasificacion(favorite.ecClasificacion());
+        proteinEntity.setAutores(favorite.autores());
         return proteinEntity;
     }
 
-    public static Protein entityToProtein(ProteinEntity proteinEntity) {
-        return new Protein(
+    public static Favorite entityToProtein(ProteinEntity proteinEntity) {
+        return new Favorite(
                 proteinEntity.getFastaNombre(),
                 proteinEntity.getFastaSecuencia(),
                 proteinEntity.getFuente(),

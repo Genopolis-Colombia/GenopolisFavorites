@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.gpc.template.adapters.in.http.dto.DTO;
 import org.gpc.template.adapters.in.http.dto.ErrorResponse;
 import org.gpc.template.adapters.in.http.dto.ProteinResponseDTO;
-import org.gpc.template.usecase.GetProteinUseCaseImpl;
+import org.gpc.template.usecase.GetFavoriteUseCaseImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class GetProteinHandler implements Handler<UUID, ResponseEntity<DTO>> {
-  private final GetProteinUseCaseImpl getProteinUseCase;
+  private final GetFavoriteUseCaseImpl getProteinUseCase;
 
   @Override
   public ResponseEntity<DTO> handle(UUID proteinID) {
