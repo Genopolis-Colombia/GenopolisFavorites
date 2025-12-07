@@ -11,7 +11,7 @@ subprojects {
         mavenCentral()
     }
 
-    group = 'org.gpc.proteins'
+    group = 'org.gpc.favorites'
     version = '1.0-SNAPSHOT'
 
     dependencies {
@@ -33,5 +33,5 @@ subprojects {
 }
 
 springBoot {
-    mainClass = 'org.gpc.proteins.Application'
+    mainClass = 'org.gpc.favorites.Application'
 }
