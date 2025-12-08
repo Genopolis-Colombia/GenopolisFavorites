@@ -1,7 +1,7 @@
 package org.gpc.template.adapters.in.http;
 
 import org.gpc.template.MySQLTestContainer;
-import org.gpc.template.adapters.in.http.dto.CreateProteinRequestDTO;
+import org.gpc.template.adapters.in.http.dto.CreateFavoriteRequestDTO;
 import org.gpc.template.kernel.Favorite;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ class FavoriteControllerAdapterTest extends MySQLTestContainer {
     @Test
     void shouldSaveAProteinSuccessful() {
         String path = host + port + "/pets";
-        CreateProteinRequestDTO entity = new CreateProteinRequestDTO("P53", "MEEPQSDPSV", "Human", "Homo sapiens", "Transcription Factor", 1234, "Levine et al.");
-        HttpEntity<CreateProteinRequestDTO> request = new HttpEntity<>(entity);
-        ResponseEntity<CreateProteinRequestDTO> response = restTemplate.exchange(path, HttpMethod.POST, request, CreateProteinRequestDTO.class);
+        CreateFavoriteRequestDTO entity = new CreateFavoriteRequestDTO("P53", "MEEPQSDPSV", "Human", "Homo sapiens", "Transcription Factor", 1234, "Levine et al.");
+        HttpEntity<CreateFavoriteRequestDTO> request = new HttpEntity<>(entity);
+        ResponseEntity<CreateFavoriteRequestDTO> response = restTemplate.exchange(path, HttpMethod.POST, request, CreateFavoriteRequestDTO.class);
         Optional<Favorite> maybeProteinSaved = mySQLProteinRepository.getProtein(Objects.requireNonNull(response.getBody()).id());
 
         validateSuccessfulResponse(response);

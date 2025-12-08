@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.UUID;
 
 @AllArgsConstructor
-public class DeleteProteinHandler implements Handler<UUID, ResponseEntity<DTO>> {
+public class DeleteFavoriteHandler implements Handler<UUID, ResponseEntity<DTO>> {
   private final DeleteFavoriteUseCaseImpl deleteProteinUseCase;
 
   @Override
