@@ -21,26 +21,23 @@ public class FindFavoritesByUserHandler implements Handler<UUID, ResponseEntity<
 
     @Override
     public ResponseEntity<DTO> handle(UUID userId) {
+        log.info("Handling request to find favorites for user: {}", userId);
         try {
             List<Favorite> favorites = findFavoritesByUserUseCase.execute(userId);
-
-            List<FavoriteResponseDTO> responseList = favorites.stream()
+            
+            List<FavoriteResponseDTO> favoriteDTOs = favorites.stream()
                     .map(favorite -> new FavoriteResponseDTO(
                             favorite.id(),
                             favorite.userId(),
                             favorite.proteinId(),
-                            favorite.fastaName()
-                    ))
+                            favorite.fastaName()))
                     .toList();
 
-            FavoriteListResponseDTO response = new FavoriteListResponseDTO(responseList);
-
-            return ResponseEntity.ok(response);
-
+            return ResponseEntity.ok(new FavoriteListResponseDTO(favoriteDTOs));
         } catch (Exception e) {
-            log.error("Error getting favorites for userId={}", userId, e);
+            log.error("Error finding favorites for user {}: {}", userId, e.getMessage());
             return ResponseEntity.internalServerError()
-                    .body(new ErrorResponse("Error getting favorites", e.getMessage()));
+                    .body(new ErrorResponse("Error internal server", e.getMessage()));
         }
     }
 }

@@ -1,12 +1,12 @@
 package org.gpc.template.adapters.out.mysql;
 
-import org.gpc.template.adapters.out.mysql.model.FavoriteEntity;
 import org.gpc.template.adapters.out.mysql.transformers.FavoriteTransformer;
 import org.gpc.template.kernel.Favorite;
 import org.gpc.template.port.RepositoryPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,21 +27,21 @@ public class MysqlFavoriteRepositoryImpl implements RepositoryPort {
     }
 
     @Override
-    public Optional<Favorite> getProtein(UUID id) {
-        return favoriteRepository.findById(id).map(FavoriteTransformer::entityToProtein);
+    public Optional<Favorite> getFavorite(UUID id) {
+        return favoriteRepository.findById(id).map(FavoriteTransformer::entityToFavorite);
     }
 
     @Override
-    public void deleteProtein(UUID id) {
+    public List<Favorite> findByUserId(UUID userId) {
+        return favoriteRepository.findByUserId(userId)
+                .stream()
+                .map(FavoriteTransformer::entityToFavorite)
+                .toList();
+    }
+
+    @Override
+    public void deleteFavorite(UUID id) {
         favoriteRepository.deleteById(id);
-    }
-
-    @Override
-    public Optional<Favorite> putProtein(UpdateProtein updateprotein) {
-
-        FavoriteEntity favoriteEntity = FavoriteTransformer.updateProteinToEntity(updateprotein);
-        favoriteRepository.save(favoriteEntity);
-        return Optional.of(FavoriteTransformer.entityToProtein(favoriteEntity));
     }
 
     // Only for testing purposes

@@ -35,18 +35,18 @@ public class FavoriteControllerAdapter {
   }
 
   @GetMapping("/favorites/{favorite_id}")
-  public ResponseEntity<DTO> getFavorites(@PathVariable UUID favorite_id) {
-    return getFavoriteHandler.handle(favorite_id);
+  public ResponseEntity<DTO> getFavorites(@PathVariable("favorite_id") UUID favoriteId) {
+    return getFavoriteHandler.handle(favoriteId);
   }
 
   @GetMapping("/favorites/user/{user_id}")
   public ResponseEntity<DTO> getFavoritesByUser(@PathVariable("user_id") UUID userId) {
-      return findFavoritesByUserHandler.handle(userId);
+    return findFavoritesByUserHandler.handle(userId);
   }
 
   @DeleteMapping("/favorites/{favorite_id}")
-  public ResponseEntity<DTO> deleteFavorite(@PathVariable UUID favorite_id) {
-    return deleteFavoriteHandler.handle(favorite_id);
+  public ResponseEntity<DTO> deleteFavorite(@PathVariable("favorite_id") UUID favoriteId) {
+    return deleteFavoriteHandler.handle(favoriteId);
   }
 
 }

@@ -14,18 +14,14 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class CreateFavoriteHandler implements Handler<CreateFavoriteRequestDTO, ResponseEntity<DTO>> {
-  private final CreateFavoriteUseCaseImpl createProteinUseCase;
+  private final CreateFavoriteUseCaseImpl createFavoriteUseCase;
 
   @Override
-  public ResponseEntity<DTO> handle(CreateFavoriteRequestDTO proteinRequestDto) {
-    UUID id = createProteinUseCase.execute(new Favorite(
-        proteinRequestDto.fastaNombre(),
-        proteinRequestDto.fastaSecuencia(),
-        proteinRequestDto.fuente(),
-        proteinRequestDto.organismo(),
-        proteinRequestDto.clasificacion(),
-        proteinRequestDto.ecClasificacion(),
-        proteinRequestDto.autores()
+  public ResponseEntity<DTO> handle(CreateFavoriteRequestDTO favoriteRequestDto) {
+    UUID id = createFavoriteUseCase.execute(new Favorite(null,
+        favoriteRequestDto.userId(),
+        favoriteRequestDto.proteinId(),
+        favoriteRequestDto.fastaName()
     ));
     return new ResponseEntity<>(new CreateFavoriteResponseDTO(id), HttpStatus.CREATED);
   }

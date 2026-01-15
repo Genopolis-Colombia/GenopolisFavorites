@@ -4,10 +4,12 @@ import org.gpc.template.adapters.out.mysql.MysqlFavoriteRepositoryImpl;
 import org.gpc.template.adapters.out.mysql.FavoriteRepository;
 import org.gpc.template.handlers.CreateFavoriteHandler;
 import org.gpc.template.handlers.DeleteFavoriteHandler;
+import org.gpc.template.handlers.FindFavoritesByUserHandler;
 import org.gpc.template.handlers.GetFavoriteHandler;
 import org.gpc.template.port.RepositoryPort;
 import org.gpc.template.usecase.CreateFavoriteUseCaseImpl;
 import org.gpc.template.usecase.DeleteFavoriteUseCaseImpl;
+import org.gpc.template.usecase.FindFavoritesByUserUseCaseImpl;
 import org.gpc.template.usecase.GetFavoriteUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +18,16 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    MysqlFavoriteRepositoryImpl getMysqlProteinRepositoryImpl(FavoriteRepository favoriteRepository){
+    MysqlFavoriteRepositoryImpl getMysqlFavoriteRepositoryImpl(FavoriteRepository favoriteRepository){
         return new MysqlFavoriteRepositoryImpl(favoriteRepository);
     }
     @Bean
-    CreateFavoriteUseCaseImpl getCreateProteinUseCaseImpl(RepositoryPort repositoryPort){
+    CreateFavoriteUseCaseImpl getCreateFavoriteUseCaseImpl(RepositoryPort repositoryPort){
         return new CreateFavoriteUseCaseImpl(repositoryPort);
     }
 
     @Bean
-    GetFavoriteUseCaseImpl getProteinUseCase(RepositoryPort repositoryPort){
+    GetFavoriteUseCaseImpl getFavoriteUseCase(RepositoryPort repositoryPort){
         return new GetFavoriteUseCaseImpl(repositoryPort);
     }
 
@@ -33,29 +35,30 @@ public class AppConfig {
     DeleteFavoriteUseCaseImpl getDeleteProteinUseCase(RepositoryPort repositoryPort){
         return new DeleteFavoriteUseCaseImpl(repositoryPort);
     }
+
     @Bean
-    PutProteinUseCaseImpl getPutProteinUseCase(RepositoryPort repositoryPort){
-        return new PutProteinUseCaseImpl(repositoryPort);
+    public FindFavoritesByUserUseCaseImpl findFavoritesByUserUseCase(RepositoryPort repositoryPort) {
+        return new FindFavoritesByUserUseCaseImpl(repositoryPort);
     }
 
     @Bean
-    UpdateProteinHandler getUpdateProteinHandler(GetFavoriteUseCaseImpl getProteinUseCase, PutProteinUseCaseImpl putProteinUseCase){
-        return new UpdateProteinHandler(putProteinUseCase, getProteinUseCase);
+    public FindFavoritesByUserHandler findFavoritesByUserHandler(FindFavoritesByUserUseCaseImpl useCase) {
+        return new FindFavoritesByUserHandler(useCase);
     }
 
     @Bean
-    CreateFavoriteHandler getCreateProteinHandler(CreateFavoriteUseCaseImpl createProteinUseCase){
-        return new CreateFavoriteHandler(createProteinUseCase);
+    CreateFavoriteHandler getCreateFavoriteHandler(CreateFavoriteUseCaseImpl createFavoriteUseCase){
+        return new CreateFavoriteHandler(createFavoriteUseCase);
     }
 
     @Bean
-    GetFavoriteHandler getGetProteinHandler(GetFavoriteUseCaseImpl getProteinUseCase){
-        return new GetFavoriteHandler(getProteinUseCase);
+    GetFavoriteHandler getGetFavoriteHandler(GetFavoriteUseCaseImpl getFavoriteUseCase){
+        return new GetFavoriteHandler(getFavoriteUseCase);
     }
 
     @Bean
-    DeleteFavoriteHandler getDeleteProteinHandler(DeleteFavoriteUseCaseImpl deleteProteinUseCase){
-        return new DeleteFavoriteHandler(deleteProteinUseCase);
+    DeleteFavoriteHandler getDeleteProteinHandler(DeleteFavoriteUseCaseImpl deleteFavoriteUseCase){
+        return new DeleteFavoriteHandler(deleteFavoriteUseCase);
     }
 
 }

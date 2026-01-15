@@ -12,18 +12,18 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class GetFavoriteHandler implements Handler<UUID, ResponseEntity<DTO>> {
-  private final GetFavoriteUseCaseImpl getProteinUseCase;
+  private final GetFavoriteUseCaseImpl getFavoriteUseCase;
 
   @Override
-  public ResponseEntity<DTO> handle(UUID proteinID) {
-    return getProteinUseCase.execute(proteinID)
-        .map(protein -> new ResponseEntity<DTO>(
-                new FavoriteResponseDTO(proteinID, protein.fastaNombre(),protein.fastaSecuencia(),protein.fuente(),protein.organismo(),protein.clasificacion(),protein.ecClasificacion(),protein.autores()),
+  public ResponseEntity<DTO> handle(UUID favoriteID) {
+    return getFavoriteUseCase.execute(favoriteID)
+        .map(favorite -> new ResponseEntity<DTO>(
+                new FavoriteResponseDTO(favoriteID, favorite.userId(),favorite.proteinId(),favorite.fastaName()),
                 HttpStatus.OK
             )
         ).orElse( //Entra aquí si el optional tiene nulo. Es decir, que no trae una proteína.
             new ResponseEntity<>(
-                new ErrorResponse("Protein not found", "the protein with id: " + proteinID + " was not found"),
+                new ErrorResponse("Favorite not found", "the favorite with id: " + favoriteID + " was not found"),
                 HttpStatus.NOT_FOUND)
         );
   }

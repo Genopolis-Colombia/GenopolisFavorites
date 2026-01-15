@@ -7,7 +7,6 @@ public class FavoriteTransformer {
 
     public static FavoriteEntity favoriteToEntity(Favorite favorite) {
         FavoriteEntity favoriteEntity = new FavoriteEntity();
-        favoriteEntity.setId(favorite.id());
         favoriteEntity.setUserId(favorite.userId());
         favoriteEntity.setProteinId(favorite.proteinId());
         favoriteEntity.setFastaName(favorite.fastaName());

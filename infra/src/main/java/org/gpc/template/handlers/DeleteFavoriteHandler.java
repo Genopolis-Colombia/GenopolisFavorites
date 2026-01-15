@@ -10,11 +10,11 @@ import java.util.UUID;
 
 @AllArgsConstructor
 public class DeleteFavoriteHandler implements Handler<UUID, ResponseEntity<DTO>> {
-  private final DeleteFavoriteUseCaseImpl deleteProteinUseCase;
+  private final DeleteFavoriteUseCaseImpl deleteFavoriteUseCase;
 
   @Override
-  public ResponseEntity<DTO> handle(UUID petID) {
-    deleteProteinUseCase.execute(petID);
+  public ResponseEntity<DTO> handle(UUID favoriteID) {
+    deleteFavoriteUseCase.execute(favoriteID);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }
